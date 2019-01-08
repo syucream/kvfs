@@ -1,0 +1,8 @@
+[package]
+name = "kvfs"
+version = "0.1.0"
+authors = ["Ryo Okubo <syucream1031@gmail.com>"]
+
+[dependencies]
+fuse = "0.3"
+libc = "0.2.46"
