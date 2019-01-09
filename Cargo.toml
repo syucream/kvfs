@@ -6,3 +6,4 @@ authors = ["Ryo Okubo <syucream1031@gmail.com>"]
 [dependencies]
 fuse = "0.3"
 libc = "0.2.46"
+leveldb = "0.8.4"

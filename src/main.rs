@@ -7,5 +7,7 @@ use kvfs::Kvfs;
 fn main() {
     let mt = env::args_os().nth(1).unwrap();
 
-    fuse::mount(Kvfs, &mt, &[]).unwrap();
+    let fs = Kvfs {};
+
+    fuse::mount(fs, &mt, &[]).unwrap();
 }

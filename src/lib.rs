@@ -3,9 +3,12 @@ extern crate libc;
 
 use std::ffi::OsStr;
 use libc::ENOENT;
-use fuse::{Filesystem, Request, ReplyData, ReplyEntry};
+use fuse::{Filesystem, Request, ReplyAttr, ReplyData, ReplyDirectory, ReplyEntry, ReplyWrite};
 
-pub struct Kvfs;
+pub struct Kvfs {
+    // TODO
+    // driver: driver::Driver
+}
 
 // Super WIP
 impl Filesystem for Kvfs {
@@ -13,7 +16,19 @@ impl Filesystem for Kvfs {
         reply.error(ENOENT);
     }
 
+    fn getattr(&mut self, _req: &Request, _ino: u64, reply: ReplyAttr) {
+        reply.error(ENOENT);
+    }
+
     fn read(&mut self, _req: &Request, _ino: u64, _fh: u64, _offset: i64, _size: u32, reply: ReplyData) {
+        reply.error(ENOENT);
+    }
+
+    fn readdir(&mut self, _req: &Request, _ino: u64, _fh: u64, _offset: i64, reply: ReplyDirectory) {
+        reply.error(ENOENT);
+    }
+
+    fn write(&mut self, _req: &Request, _ino: u64, _fh: u64, _offset: i64, _data: &[u8], _flags: u32, reply: ReplyWrite) {
         reply.error(ENOENT);
     }
 }
