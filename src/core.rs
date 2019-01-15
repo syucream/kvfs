@@ -2,7 +2,7 @@ use std::ffi::OsStr;
 use libc::ENOENT;
 use fuse::{Filesystem, Request, ReplyAttr, ReplyData, ReplyDirectory, ReplyEntry, ReplyWrite};
 
-use driver::Driver;
+use drivers::driver::Driver;
 
 pub struct Kvfs {
     // driver: Driver

@@ -1,19 +1,11 @@
-extern crate leveldb;
+extern crate leveldb as libleveldb;
 
 use std::path::Path;
-// use leveldb::database::Database;
-use driver::leveldb::options::Options;
-
-pub trait Driver {
-    fn read(&self, key: &str) -> &[u8];
-
-    fn write(&self, key: &str, value: &[u8]) -> u64;
-
-    fn exist(&self, key: &str) -> bool;
-}
+use drivers::driver::Driver;
+// use drivers::leveldb::libleveldb::database::Database;
+use drivers::leveldb::libleveldb::options::Options;
 
 // LevelDB driver for Kvfs
-// TODO move to other module.
 pub struct LevelDBDriver {
 }
 
