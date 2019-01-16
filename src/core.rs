@@ -1,3 +1,4 @@
+use std::boxed::Box;
 use std::ffi::OsStr;
 use libc::ENOENT;
 use fuse::{Filesystem, Request, ReplyAttr, ReplyData, ReplyDirectory, ReplyEntry, ReplyWrite};
@@ -5,18 +6,16 @@ use fuse::{Filesystem, Request, ReplyAttr, ReplyData, ReplyDirectory, ReplyEntry
 use drivers::driver::Driver;
 
 pub struct Kvfs {
-    // driver: Driver
+    driver: Box<Driver>,
 }
 
-/*
 impl Kvfs {
-    pub fn new(driver: Driver) -> Kvfs {
+    pub fn new(driver: Box<Driver>) -> Kvfs {
         Kvfs {
-            driver: driver
+            driver: driver,
         }
     }
 }
-*/
 
 // Super WIP
 impl Filesystem for Kvfs {
