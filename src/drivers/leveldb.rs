@@ -22,19 +22,17 @@ impl LevelDBDriver {
 }
 
 impl Driver for LevelDBDriver {
-    fn read(&self, key: &str) -> &[u8] {
-        // TODO implement
-
-        &[]
+    fn read(&mut self, key: &[u8]) -> Option<Vec<u8>> {
+        self.database.get(key)
     }
 
-    fn write(&self, key: &str, value: &[u8]) -> u64 {
+    fn write(&mut self, key: &str, value: &[u8]) -> u64 {
         // TODO implement
 
         0
     }
 
-    fn exist(&self, key: &str) -> bool {
+    fn exist(&mut self, key: &str) -> bool {
         // TODO implement
 
         true

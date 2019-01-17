@@ -1,7 +1,7 @@
 pub trait Driver {
-    fn read(&self, key: &str) -> &[u8];
+    fn read(&mut self, key: &[u8]) -> Option<Vec<u8>>;
 
-    fn write(&self, key: &str, value: &[u8]) -> u64;
+    fn write(&mut self, key: &str, value: &[u8]) -> u64;
 
-    fn exist(&self, key: &str) -> bool;
+    fn exist(&mut self, key: &str) -> bool;
 }
