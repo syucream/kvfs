@@ -26,15 +26,17 @@ impl Driver for LevelDBDriver {
         self.database.get(key)
     }
 
-    fn write(&mut self, key: &str, value: &[u8]) -> u64 {
-        // TODO implement
-
-        0
+    fn write(&mut self, key: &[u8], value: &[u8]) -> bool {
+        match self.database.put(key, value) {
+            Ok(v) => true,
+            Err(e) => false,
+        }
     }
 
-    fn exist(&mut self, key: &str) -> bool {
-        // TODO implement
-
-        true
+    fn exist(&mut self, key: &[u8]) -> bool {
+        match self.database.get(key) {
+            Some(v) => true,
+            None => false,
+        }
     }
 }
