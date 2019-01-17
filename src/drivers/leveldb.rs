@@ -1,28 +1,22 @@
-extern crate leveldb as libleveldb;
+extern crate rusty_leveldb;
 
-use std::path::Path;
-use drivers::leveldb::libleveldb::database::Database;
-use drivers::leveldb::libleveldb::options::Options;
+use self::rusty_leveldb::{DB, Options};
 
 use drivers::driver::Driver;
 
 // LevelDB driver for Kvfs
 pub struct LevelDBDriver {
-    database: Database<i32>,
+    database: DB,
 }
 
 impl LevelDBDriver {
-    pub fn new(path: &Path) -> LevelDBDriver {
-        let mut options = Options::new();
-        options.create_if_missing = true;
+    pub fn new(path: &str) -> LevelDBDriver {
+        let opts = Options::default();
 
-        let mut database = match Database::open(path, options) {
-            Ok(db) => { db },
-            Err(e) => { panic!("failed to open database: {:?}", e) }
-        };
+        let mut db = DB::open(path, opts).unwrap();
 
         LevelDBDriver {
-            database: database
+            database: db,
         }
     }
 }
